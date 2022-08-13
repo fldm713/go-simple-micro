@@ -22,5 +22,8 @@
 
 */brokerApp
 */frontApp
+*/authApp
 
 *.DS_Store
+
+**/db-data

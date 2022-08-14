@@ -34,6 +34,24 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+  
+  mail-service:
+    build:
+      context: ./../mail-service
+      dockerfile: ./../mail-service/mail-service.dockerfile
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      MAIL_DOMAIN: localhost
+      MAIL_HOST: mailhog
+      MAIL_PORT: 1025
+      MAIL_ENCRYPTION: none
+      MAIL_USERNAME: ""
+      MAIL_PASSWORD: ""
+      FROM_NAME: "Honglin Ma"
+      FROM_ADDDRESS: "honglin.ma@example.com"
 
   postgres:
     image: 'postgres:14.2'
@@ -48,3 +66,23 @@ services:
       POSTGRES_DB: users
     volumes:
       - ./db-data/postgres/:/var/lib/postgresql/data/
+
+  mongo:
+    image: 'mongo:4.2.16-bionic'
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_DATABASE: logs
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - ./db-data/mongo/:/data/db
+
+  mailhog:
+    image: 'teawithfruit/mailhog:latest'
+    ports:
+      - "8025:8025"
+      - "1025:1025"

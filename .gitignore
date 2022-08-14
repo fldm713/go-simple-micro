@@ -24,6 +24,7 @@
 */frontApp
 */authApp
 */loggerApp
+*/mailApp
 
 *.DS_Store
 

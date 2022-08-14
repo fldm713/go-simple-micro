@@ -23,6 +23,7 @@
 */brokerApp
 */frontApp
 */authApp
+*/loggerApp
 
 *.DS_Store
 

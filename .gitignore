@@ -25,6 +25,7 @@
 */authApp
 */loggerApp
 */mailApp
+*/listenerApp
 
 *.DS_Store
 
